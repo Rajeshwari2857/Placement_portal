@@ -3,22 +3,19 @@
 {% block content %}
 <h1>Hello {{name}}</h1>
 
-<form action="">
+<form
+ action="{% url 'signup' %}"
+ method="post"
+>
     Email <input type="text" name="Email">
-    <br>
     Phone<input type="number" name="Phone">
-    <br>
     Username<input type="text" name="Username">
-    <br>
     Password <input type="text" name="Password">
-    <br>
     <button type="submit">Sign up</button>
-    <br>
 
-    <p>
-        Already have an account? <a href="{% url 'login' %}">Login</a>
+    <p>Already have an account?
+        <a href="{% url 'login' %}">Login</a>
     </p>
-
 </form>
 
 {% endblock %}

@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+{% load static %}
 <head>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Placement Portal</title>
 </head>
-
-<body bgcolor="white">
+<hr class="line">
+<h1>Welcome</h1>
+<hr class="line">
+<body bgcolor="white"> 
     {% block content %}
 
     {% endblock %}
