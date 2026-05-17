@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'portal'
+    'student',
+    'company',
+    'admin_panel',
 ]
 
 MIDDLEWARE = [
