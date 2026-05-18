@@ -18,6 +18,7 @@ staticfiles/
 # Virtual environment
 venv/
 env/
+.env
 
 # VSCode / PyCharm
 .vscode/

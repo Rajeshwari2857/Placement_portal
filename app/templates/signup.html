@@ -7,14 +7,18 @@
 action="{% url 'signup' %}"
 method="post">
     {% csrf_token %}
-        Email <input type="email" name="Email" placeholder="Email">
-        Username<input type="text" name="Username" placeholder="Username">
-        Password <input type="password" name="Password" placeholder="Password">
+        <input type="email" name="Email" placeholder="Email"><br>
+        <input type="text" name="Username" placeholder="Username"><br>
+        <input type="password" name="Password" placeholder="Password"><br>
     <button type="submit">Sign up</button>
 
     <p>Already have an account?
         <a href="{% url 'log_in' %}">Log in</a>
     </p>
 </form>
+
+{% for message in messages %}
+    {{ message }}
+{% endfor %}
 
 {% endblock %}

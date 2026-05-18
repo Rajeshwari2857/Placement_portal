@@ -7,8 +7,8 @@
 action="{% url 'log_in' %}"
 method="post">
     {% csrf_token %}
-        Email <input type="text" name="Email">
-        Password: <input type="text" name="Password">
+        <input type="text" name="Username" placeholder="Username">
+        <input type="password" name="Password" placeholder="Password">
 
     <a href="#">Forgot password?</a>
     <button type="submit">Login</button>
@@ -16,7 +16,10 @@ method="post">
     <p>
         Dont have an account? <a href="{% url 'signup' %}">Sign up</a>
     </p>
-
 </form>
+
+{% for message in messages %}
+    {{ message }}
+{% endfor %}
 
 {% endblock %}
