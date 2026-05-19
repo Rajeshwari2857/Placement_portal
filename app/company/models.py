@@ -7,4 +7,4 @@ class Company(models.Model):
     company_name = models.CharField(max_length=200, blank=True, null=True)
     hr_contact = models.CharField(max_length=200, blank=True, null=True)
     website = models.CharField(max_length=200, blank=True, null=True)
-    approval_status = models.CharField(max_length=200, default='pending')
+    approval_status = models.CharField(max_length=200, default='Pending')
