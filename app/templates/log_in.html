@@ -1,29 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Hello {{name}}</h1>
+    <h1>Hello {{name}}</h1>
 
-<form
-action="{% url 'log_in' %}"
-method="post">
-    {% csrf_token %}
-        <input type="text" name="Username" placeholder="Username"><br>
-        <input type="password" name="Password" placeholder="Password"><br>
-        <select name="role">
-            <option value="Student">Student</option>
-            <option value="Company">Company</option>
-        </select><br>
+    <form
+    action="{% url 'log_in' %}"
+    method="post">
+        {% csrf_token %}
+            <input type="text" name="Username" placeholder="Username"><br>
+            <input type="password" name="Password" placeholder="Password"><br>
+            <select name="role">
+                <option value="Student">Student</option>
+                <option value="Company">Company</option>
+            </select><br>
 
-    <a href="#">Forgot password?</a>
-    <button type="submit">Login</button>
+        <a href="#">Forgot password?</a>
+        <button type="submit">Login</button>
 
-    <p>
-        Dont have an account? <a href="{% url 'signup' %}">Sign up</a>
-    </p>
-</form>
-
-{% for message in messages %}
-    {{ message }}
-{% endfor %}
+        <p>
+            Dont have an account? <a href="{% url 'signup' %}">Sign up</a>
+        </p>
+    </form>
 
 {% endblock %}

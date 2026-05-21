@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Admin's Dashboard</h1>
+
+    {% for company in companies %}
+        <div>
+            {{ company.company_name }} {{ company.approval_status }}
+            <button>Approve</button>
+            <button>Blacklist</button>
+        </div>
+    {% endfor %}
+
+{% endblock %}

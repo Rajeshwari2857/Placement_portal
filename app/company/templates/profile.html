@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2> Set up your Profile!</h2>
+
+    <form 
+    action="{% url 'profile' %}"
+    method="post">
+        {% csrf_token %}
+            <input type="text" name="company_name" placeholder="Company name"><br>
+            <input type="number" name="hr_contact" placeholder="HR contact number"><br>
+            <input type="text" name="website" placeholder="Website URL"><br>
+            <button type="submit">Submit</button>
+    </form>
+{% endblock %}

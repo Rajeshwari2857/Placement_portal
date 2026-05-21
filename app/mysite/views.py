@@ -76,6 +76,6 @@ def signup(request):
             else:
                 Company.objects.create(user=user)
                 login(request, user)
-                return redirect('pending')
+                return redirect('profile')
     else:
         return render(request, 'signup.html')       

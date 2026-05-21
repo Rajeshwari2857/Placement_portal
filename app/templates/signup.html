@@ -1,28 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Hello {{name}}</h1>
+    <h1>Hello {{name}}</h1>
 
-<form
-action="{% url 'signup' %}"
-method="post">
-    {% csrf_token %}
-        <input type="email" name="Email" placeholder="Email"><br>
-        <input type="text" name="Username" placeholder="Username"><br>
-        <input type="password" name="Password" placeholder="Password"><br>
-        <select name="role">
-            <option value="Student">Student</option>
-            <option value="Company">Company</option>
-        </select>
-    <button type="submit">Sign up</button>
+    <form
+    action="{% url 'signup' %}"
+    method="post">
+        {% csrf_token %}
+            <input type="email" name="Email" placeholder="Email"><br>
+            <input type="text" name="Username" placeholder="Username"><br>
+            <input type="password" name="Password" placeholder="Password"><br>
+            <select name="role">
+                <option value="Student">Student</option>
+                <option value="Company">Company</option>
+            </select>
+        <button type="submit">Sign up</button>
 
-    <p>Already have an account?
-        <a href="{% url 'log_in' %}">Log in</a>
-    </p>
-</form>
+        <p>Already have an account?
+            <a href="{% url 'log_in' %}">Log in</a>
+        </p>
+    </form>
 
-{% for message in messages %}
-    {{ message }}
-{% endfor %}
 
 {% endblock %}

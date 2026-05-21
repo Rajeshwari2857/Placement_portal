@@ -10,6 +10,9 @@
 <hr class="line">
 <h1>Welcome</h1>
 <hr class="line">
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
 <body bgcolor="white"> 
     {% block content %}
 
