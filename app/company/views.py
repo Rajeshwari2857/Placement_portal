@@ -22,3 +22,6 @@ def profile(request):
     
     else:
         return render(request, 'profile.html')
+    
+def comp_dash(request):
+    return render(request, 'comp_dash.html')

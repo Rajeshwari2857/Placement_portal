@@ -1,14 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Admin's Dashboard</h1>
+    <h1>Admin's Dashboard</h1>
 
-    {% for company in companies %}
-        <div>
-            {{ company.company_name }} {{ company.approval_status }}
-            <button>Approve</button>
-            <button>Blacklist</button>
-        </div>
-    {% endfor %}
+    <h2>Registered Companies</h2>
+        {% for company in approved %}
+            <div>
+                {{ company.company_name }}  
+                <form action="{% url 'blacklist' %}"
+                method="post">    
+                    {% csrf_token %}
+                    <input type="hidden" name="company_id" value="{{ company.id }}">
+                    <button type="submit">Blacklist </button>
+                </form>
+            </div>
+        {% endfor %}
+
+    <h2>Company applications</h2>
+        {% for company in pending %}
+            <div>
+                {{ company.company_name }}  
+                <form action="{% url 'approval' %}"
+                method="post">    
+                    {% csrf_token %}
+                    <input type="hidden" name="company_id" value="{{ company.id }}">
+                    <button type="submit">Approve</button>
+                </form>
+            </div>
+        {% endfor %}
 
 {% endblock %}

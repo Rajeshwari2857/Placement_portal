@@ -4,4 +4,5 @@ from . import views
 urlpatterns = [
     path('pending/', views.pending, name='pending'),
     path('profile/', views.profile, name='profile'), 
+    path('dashboard/', views.comp_dash, name='comp_dash'), 
 ]
