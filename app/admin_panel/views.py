@@ -4,9 +4,9 @@ from company.models import Company
 
 def dashboard(request):
 
-    pending = Company.objects.filter(approval_status='pending')
-    approved = Company.objects.filter(approval_status='approved')
-    blacklisted = Company.objects.filter(approval_status='blacklisted')
+    pending = Company.objects.filter(approval_status='Pending')
+    approved = Company.objects.filter(approval_status='Approved')
+    blacklisted = Company.objects.filter(approval_status='Blacklisted')
     companies = {
         'pending': pending, 
         'approved': approved,
@@ -15,12 +15,12 @@ def dashboard(request):
     return render(request, 'admin_dash.html', companies)
 
 
-def approval(request):
+def approved(request):
 
     if request.method == 'POST':
         company_id = request.POST['company_id']
         company = Company.objects.get(id=company_id)
-        company.approval_status = 'approved'
+        company.approval_status = 'Approved'
         company.save()
         return redirect('dashboard')
     
@@ -28,12 +28,25 @@ def approval(request):
         return redirect('dashboard')
 
 
-def blacklist(request):
+def pending(request):
 
     if request.method == 'POST':
         company_id = request.POST['company_id']
         company = Company.objects.get(id=company_id)
-        company.approval_status = 'blacklisted'
+        company.approval_status = 'Pending'
+        company.save()
+        return redirect('dashboard')
+    
+    else:
+        return redirect('dashboard')
+
+
+def blacklisted(request):
+
+    if request.method == 'POST':
+        company_id = request.POST['company_id']
+        company = Company.objects.get(id=company_id)
+        company.approval_status = 'Blacklisted'
         company.save()
         return redirect('dashboard')
     
