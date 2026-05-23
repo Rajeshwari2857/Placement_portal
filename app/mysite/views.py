@@ -30,6 +30,10 @@ def log_in(request):
                     login(request, user)
                     return redirect('stu_dash')
                 
+                elif user.is_superuser:
+                    login(request, user)
+                    return redirect('admin_panel')
+                
                 else:
                     login(request, user)
                     company = Company.objects.get(user=user)
@@ -40,7 +44,7 @@ def log_in(request):
                     else:
                         messages.error(request, 'Your company has been blacklisted')
                         return redirect('log_in')
-                
+                    
             #checked user existence first cuz authenticate returns NONE for WRONG PASSWORD and NO USER FOUND
                             
     else:
