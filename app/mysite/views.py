@@ -61,8 +61,8 @@ def signup(request):
         # this ['Username'] shud be the same as the 'name' in html file
     
         if User.objects.filter(username=username).exists():
-            messages.error(request, "username already exists, try logging in")
-            return redirect('log_in')
+            messages.error(request, "username already exists")
+            return redirect('signup')
         
         elif User.objects.filter(email=email).exists():
             messages.error(request, "email already exists, try logging in")

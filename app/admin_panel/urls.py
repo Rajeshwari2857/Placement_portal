@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.admin_dash, name='admin_panel'),
     path('dashboard/', views.admin_dash, name='admin_dash'),
-    path('approval/', views.approved, name='approved'),
-    path('blacklisted/', views.blacklisted, name='blacklisted'),
-    path('pending/', views.com_pending, name='com_pending'),
+    path('approval/', views.approve_company, name='approve_company'),
+    path('blacklisted/', views.blacklist_company, name='blacklist_company'),
+    path('blacklist/', views.blacklist_student, name='blacklist_student'),
 ]
