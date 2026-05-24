@@ -34,7 +34,7 @@
     {% for company in blacklisted %}
         <div>
             {{ company.company_name }}  
-            <form action="{% url 'pending' %}"
+            <form action="{% url 'com_pending' %}"
             method="post">    
                 {% csrf_token %}
                 <input type="hidden" name="company_id" value="{{ company.id }}">

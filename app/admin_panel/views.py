@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from company.models import Company
 
 
-def dashboard(request):
+def admin_dash(request):
 
     pending = Company.objects.filter(approval_status='Pending')
     approved = Company.objects.filter(approval_status='Approved')
@@ -22,23 +22,23 @@ def approved(request):
         company = Company.objects.get(id=company_id)
         company.approval_status = 'Approved'
         company.save()
-        return redirect('dashboard')
+        return redirect('admin_dash')
     
     else:
-        return redirect('dashboard')
+        return redirect('admin_dash')
 
 
-def pending(request):
+def com_pending(request):
 
     if request.method == 'POST':
         company_id = request.POST['company_id']
         company = Company.objects.get(id=company_id)
         company.approval_status = 'Pending'
         company.save()
-        return redirect('dashboard')
+        return redirect('admin_dash')
     
     else:
-        return redirect('dashboard')
+        return redirect('admin_dash')
 
 
 def blacklisted(request):
@@ -48,7 +48,7 @@ def blacklisted(request):
         company = Company.objects.get(id=company_id)
         company.approval_status = 'Blacklisted'
         company.save()
-        return redirect('dashboard')
+        return redirect('admin_dash')
     
     else:
-        return redirect('dashboard')
+        return redirect('admin_dash')

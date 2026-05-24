@@ -15,8 +15,8 @@ def log_in(request):
         role = request.POST['role']
 
         if not User.objects.filter(username=username).exists():
-            messages.error(request, "Username not found, sign up")
-            return redirect('signup')
+            messages.error(request, "Username not found")
+            return redirect('log_in')
         
         else:
             user = authenticate(username=username, password=password)
@@ -40,7 +40,7 @@ def log_in(request):
                     if company.approval_status == 'Approved':
                         return redirect('com_dash')
                     elif company.approval_status == 'Pending':
-                        return redirect('pending')
+                        return redirect('com_pending')
                     else:
                         messages.error(request, 'Your company has been blacklisted')
                         return redirect('log_in')
@@ -80,6 +80,6 @@ def signup(request):
             else:
                 Company.objects.create(user=user)
                 login(request, user)
-                return redirect('profile')
+                return redirect('com_profile')
     else:
         return render(request, 'signup.html')       

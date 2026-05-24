@@ -2,11 +2,11 @@ from django.shortcuts import render, redirect
 from . import models
 
 
-def pending(request):
-    return render(request, 'pending.html')
+def com_pending(request):
+    return render(request, 'com_pending.html')
 
 
-def profile(request):
+def com_profile(request):
 
     if request.method == 'POST':
         company_name = request.POST['company_name']
@@ -18,10 +18,10 @@ def profile(request):
         company.hr_contact = hr_contact
         company.website = website
         company.save()  
-        return redirect('pending')
+        return redirect('com_pending')
     
     else:
-        return render(request, 'profile.html')
+        return render(request, 'com_profile.html')
     
-def comp_dash(request):
-    return render(request, 'comp_dash.html')
+def com_dash(request):
+    return render(request, 'com_dash.html')
