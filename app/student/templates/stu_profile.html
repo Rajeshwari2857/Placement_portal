@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1> Set up your Profile!</h1>
+
+    <form 
+    action="{% url 'stu_profile' %}"
+    method="post">
+        <input type="text" name="name" placeholder="Full name">
+        <input type="text" name="department" placeholder="Department">
+        <input type="text" name="graduation_year" placeholder="Graduation year">
+        <input type="file" name="resume" placeholder="Resume">
+        <input type="submit">
+            <button>Create Profile</button>
+    </form>
+
+{% endblock %}
