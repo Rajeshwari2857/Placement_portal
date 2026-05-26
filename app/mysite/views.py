@@ -12,7 +12,6 @@ def log_in(request):
     if request.method == 'POST':
         username = request.POST['Username']
         password = request.POST['Password']
-        role = request.POST['role']
 
         if not User.objects.filter(username=username).exists():
             messages.error(request, "Username not found")
@@ -26,13 +25,13 @@ def log_in(request):
                 return redirect('log_in')
             
             else:
-                if role == 'Student':
+                if user.is_superuser:
+                    login(request, user)
+                    return redirect('admin_panel') 
+                
+                elif Student.objects.filter(user=user).exists():
                     login(request, user)
                     return redirect('stu_dash')
-                
-                elif user.is_superuser:
-                    login(request, user)
-                    return redirect('admin_panel')
                 
                 else:
                     login(request, user)
@@ -76,7 +75,7 @@ def signup(request):
             if role == 'Student':
                 Student.objects.create(user=user)
                 login(request, user)
-                return redirect('stu_dash')
+                return redirect('stu_profile')
             else:
                 Company.objects.create(user=user)
                 login(request, user)

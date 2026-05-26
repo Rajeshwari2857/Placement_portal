@@ -9,10 +9,12 @@ def stu_profile(request):
         department = request.POST['department']
         graduation_year = request.POST['graduation_year']
         student = models.Student.objects.get(user=request.user) 
+        resume = request.FILES.get('resume')
         #request.user gives the user in session
         student.name = name
         student.department = department
         student.graduation_year = graduation_year
+        student.resume = resume
         student.save()  
         return redirect('stu_dash')
     
