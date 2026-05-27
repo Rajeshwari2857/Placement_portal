@@ -4,22 +4,57 @@
     <h1>Hello {{name}}</h1>
 
     <form
-    action="{% url 'signup' %}"
-    method="post">
-        {% csrf_token %}
-            <input type="email" name="Email" placeholder="Email" required><br>
-            <input type="text" name="Username" placeholder="Username" required><br>
-            <input type="password" name="Password" placeholder="Password" required><br>
-            <select name="role">
-                <option value="Student">Student</option>
-                <option value="Company">Company</option>
-                <!--request.POST['role'] will give option value-->
-            </select>
-        <button type="submit">Sign up</button>
+        action="{% url 'signup' %}"
+        method="post">
+            {% csrf_token %}
 
-        <p>Already have an account?
-            <a href="{% url 'log_in' %}">Log in</a>
-        </p>
+                <input 
+                    type="email" 
+                    name="Email" 
+                    placeholder="Email" 
+                    required>
+                <br>
+
+                <input 
+                    type="text" 
+                    name="Username" 
+                    placeholder="Username" 
+                    required>
+                <br>
+
+                <input 
+                    type="password" 
+                    name="Password" 
+                    placeholder="Password" 
+                    required>
+                <br> 
+
+                <select 
+                    name="role">
+                        <option 
+                            value="Student">
+                            Student
+                        </option>
+
+                        <option 
+                            value="Company">
+                            Company
+                        </option>
+                        <!--request.POST['role'] will give option value-->
+                </select>
+
+            <button 
+                type="submit">
+                Sign up
+            </button>
+
+            <p>
+                Already have an account?
+                <a 
+                    href="{% url 'log_in' %}">
+                    Log in
+                </a>
+            </p>
     </form>
 
 

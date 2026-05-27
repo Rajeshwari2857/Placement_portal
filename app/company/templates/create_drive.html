@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> Create Drive </h1>
+
+<form 
+    action="{% url 'create_drive' %}"
+    method="post">
+        {% csrf_token %}
+
+        <label>
+            Job Title
+        </label>
+        <br>
+        <input 
+            type="text" 
+            name="job_title" 
+            required>
+        <br>
+
+        <label>
+            Job Description
+        </label>
+        <br>
+        <textarea 
+            name="job_description"
+            required>
+        </textarea>
+        <br>
+
+        <label>
+            Eligibility Criteria
+        </label>
+        <br>
+        <textarea 
+            name="eligibility_criteria" 
+            required>
+        </textarea>
+        <br>
+        
+        <label>
+            Application deadline
+        </label>
+        <br>
+        <input 
+            type="date" 
+            name="application_deadline"
+            required>
+        <br>
+
+        <button 
+            type="submit">
+            Submit
+        </button>
+</form>
+
+{% endblock %}

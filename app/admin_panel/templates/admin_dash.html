@@ -3,54 +3,101 @@
 {% block content %}
     <h1>Admin's Dashboard</h1>
 
+
     <h2>Registered Companies</h2>
+
     {% for company in approved_companies %}
         <div>
             {{ company.company_name }}  
-            <form action="{% url 'blacklist_company' %}"
-            method="post">    
-                {% csrf_token %}
-                <input type="hidden" name="company_id" value="{{ company.id }}">
-                <button type="submit">Blacklist </button>
+
+            <form 
+                action="{% url 'blacklist_company' %}"
+                method="post">    
+
+                    {% csrf_token %}
+                    <input 
+                        type="hidden" 
+                        name="company_id" 
+                        value="{{ company.id }}">
+
+                    <button 
+                        type="submit">
+                        Blacklist 
+                    </button>
+
             </form>
         </div>
     {% endfor %}
 
+
     <h2>Student applications</h2>
+    
     {% for student in approved_students %}
         <div>
             {{ student.name }}  
-            <form action="{% url 'blacklist_student' %}"
-            method="post">    
+            <form 
+                action="{% url 'blacklist_student' %}"
+                method="post">    
                 {% csrf_token %}
-                <input type="hidden" name="student_id" value="{{ student.id }}">
-                <button type="submit">Blacklist</button>
+
+                    <input 
+                        type="hidden" 
+                        name="student_id" 
+                        value="{{ student.id }}">
+
+                    <button 
+                        type="submit">
+                        Blacklist
+                    </button>
             </form>
         </div>
     {% endfor %}
 
+    
     <h2>Company applications</h2>
     {% for company in pending_companies %}
         <div>
             {{ company.company_name }}  
-            <form action="{% url 'approve_company' %}"
-            method="post">    
-                {% csrf_token %}
-                <input type="hidden" name="company_id" value="{{ company.id }}">
-                <button type="submit">Approve</button>
+            <form 
+                action="{% url 'approve_company' %}"
+                method="post">    
+                    {% csrf_token %}
+
+                    <input 
+                        type="hidden" 
+                        name="company_id" 
+                        value="{{ company.id }}">
+
+                    <button 
+                        type="submit">
+                        Approve
+                    </button>
+
             </form>
         </div>
     {% endfor %}
 
+
     <h2>Blacklisted Companies</h2>
+
     {% for company in blacklisted_companies %}
         <div>
             {{ company.company_name }}  
-            <form action="{% url 'approve_company' %}"
-            method="post">    
-                {% csrf_token %}
-                <input type="hidden" name="company_id" value="{{ company.id }}">
-                <button type="submit">Approve</button>
+            <form 
+                action="{% url 'approve_company' %}"
+                method="post">    
+                    {% csrf_token %}
+
+                    <input 
+                        type="hidden" 
+                        name="company_id" 
+                        value="{{ company.id }}">
+
+                    <button 
+                        type="submit">
+                        Approve
+                    </button>
+
             </form>
         </div>
     {% endfor %}

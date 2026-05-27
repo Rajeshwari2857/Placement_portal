@@ -4,18 +4,40 @@
     <h1>Hello {{name}}</h1>
 
     <form
-    action="{% url 'log_in' %}"
-    method="post">
-        {% csrf_token %}
-            <input type="text" name="Username" placeholder="Username" required><br>
-            <input type="password" name="Password" placeholder="Password" required><br>
-            
-        <a href="#">Forgot password?</a>
-        <button type="submit">Login</button>
+        action="{% url 'log_in' %}"
+        method="post">
+            {% csrf_token %}
+                <input 
+                    type="text" 
+                    name="Username" 
+                    placeholder="Username" 
+                    required>
+                <br>
 
-        <p>
-            Dont have an account? <a href="{% url 'signup' %}">Sign up</a>
-        </p>
+                <input 
+                    type="password" 
+                    name="Password"     
+                    placeholder="Password"  
+                    required>
+                <br>
+                
+            <a 
+                href="#">
+                Forgot password?
+            </a>
+
+            <button 
+                type="submit">
+                Login
+            </button>
+
+            <p>
+                Dont have an account? 
+                <a  
+                    href="{% url 'signup' %}">
+                    Sign up
+                </a>
+            </p>
     </form>
 
 {% endblock %}

@@ -25,3 +25,24 @@ def com_profile(request):
     
 def com_dash(request):
     return render(request, 'com_dash.html')
+
+
+def create_drive(request):
+
+    if request.method == 'POST':
+        company = models.Company.objects.get(user=request.user)
+        job_title = request.POST['job_title']
+        job_description = request.POST['job_description']
+        eligibility_criteria = request.POST['eligibility_criteria']
+        application_deadline = request.POST['application_deadline']
+        drive = models.Drive.objects.create(
+            company = company,
+            job_title = job_title,
+            job_description = job_description,
+            eligibility_criteria = eligibility_criteria,
+            application_deadline = application_deadline,
+        )
+        return redirect('com_dash')
+    
+    else:
+        return render(request, 'create_drive.html')

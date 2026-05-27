@@ -4,15 +4,43 @@
 <h1> Set up your Profile!</h1>
 
     <form 
-    action="{% url 'stu_profile' %}"
-    method="post"
-    enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="text" name="name" placeholder="Full name" required><br>
-        <input type="text" name="department" placeholder="Department" required><br>
-        <input type="text" name="graduation_year" placeholder="Graduation year" required><br>
-        <input type="file" name="resume" placeholder="Resume"><br>
-        <button type="submit">Create Profile</button>
-    </form>
+        action="{% url 'stu_profile' %}"
+        method="post"
+        enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <input 
+                type="text" 
+                name="name" 
+                placeholder="Full name" 
+                required>
+            <br>
+
+            <input 
+                type="text" 
+                name="department" 
+                placeholder="Department" 
+                required>
+            <br>
+
+            <input 
+                type="text"
+                name="graduation_year" 
+                placeholder="Graduation year" 
+                required>
+            <br>
+
+            <input 
+                type="file" 
+                name="resume" 
+                placeholder="Resume">
+            <br>
+
+            <button 
+                type="submit">
+                Create Profile
+            </button> 
+            
+        </form>
 
 {% endblock %}

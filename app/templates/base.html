@@ -8,17 +8,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
+
+
 <hr class="line">
 <h1>Welcome</h1>
 <hr class="line">
+
     {% for message in messages %}
         {{ message }}
     {% endfor %}
-<body bgcolor="white"> 
-    {% block content %}
 
-    {% endblock %}
+<body 
+    bgcolor="white"> 
+        {% block content %}
+
+        {% endblock %}
 </body>
 </html>
