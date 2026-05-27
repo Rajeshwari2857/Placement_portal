@@ -7,4 +7,5 @@ urlpatterns = [
     path('approval/', views.approve_company, name='approve_company'),
     path('blacklisted/', views.blacklist_company, name='blacklist_company'),
     path('blacklist/', views.blacklist_student, name='blacklist_student'),
+    path('complete_drive/', views.complete_drive, name='complete_drive'),
 ]

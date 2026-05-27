@@ -59,3 +59,16 @@ def blacklist_student(request):
     
     else:
         return redirect('admin_dash')
+    
+
+def complete_drive(request):
+
+    if request.method == "POST":
+        drive_id = request.POST['drive_id']
+        drive = Drive.objects.get(id=drive_id)
+        drive.completed = True
+        drive.save()
+        return redirect('admin_dash')
+    
+    else:
+        return redirect('admin_dash')
