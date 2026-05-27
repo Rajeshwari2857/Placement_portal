@@ -6,4 +6,22 @@
     <button>
         <a href="{% url 'create_drive' %}">Create drive</a>
     </button>
+
+    <div>
+        <h2>Upcoming Drives</h2>
+        {% for drive in ongoing_drives %}
+            <div>
+                {{ drive.drive_name }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div>
+        <h2>Closed Drives</h2>
+        {% for drive in completed_drives %}
+            <div>
+                {{ drive.drive_name }}
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

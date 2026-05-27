@@ -23,8 +23,18 @@ def com_profile(request):
     else:
         return render(request, 'com_profile.html')
     
+
 def com_dash(request):
-    return render(request, 'com_dash.html')
+    company = models.Company.objects.get(user=request.user)
+    ongoing_drives = models.Drive.objects.filter(company=company, completed=False)
+    completed_drives = models.Drive.objects.filter(company=company, completed=True)
+
+    drives = {
+        'ongoing_drives': ongoing_drives,
+        'completed_drives': completed_drives,
+    }
+
+    return render(request, 'com_dash.html', drives)
 
 
 def create_drive(request):

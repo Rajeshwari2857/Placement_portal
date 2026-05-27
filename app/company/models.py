@@ -11,9 +11,10 @@ class Company(models.Model):
 
 
 class Drive(models.Model):
+    drive_name = models.CharField(max_length=200, blank=True, null=True)
     company = models.ForeignKey(Company, on_delete=models.CASCADE, null=False)
     job_title = models.CharField(max_length=200, blank=True, null=True)
     job_description = models.TextField(blank=True, null=True)
     eligibility_criteria = models.TextField(blank=True, null=True)
     application_deadline = models.DateField(blank=True, null=True)
-    status = models.CharField(max_length=100, default='Pending')
+    completed = models.BooleanField(blank=True, null=False, default=False)

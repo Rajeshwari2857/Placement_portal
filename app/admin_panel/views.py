@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from company.models import Company
+from company.models import Company, Drive
 from student.models import Student
 
 
@@ -10,14 +10,17 @@ def admin_dash(request):
     blacklisted_companies = Company.objects.filter(approval_status='Blacklisted')
     approved_students = Student.objects.filter(blacklisted=False)
 
-    companies = {
+    ongoing_drives = Drive.objects.filter(completed=False)
+
+    context = {
         'pending_companies': pending_companies, 
         'approved_companies': approved_companies,
         'blacklisted_companies': blacklisted_companies,
         'approved_students': approved_students,
+        'ongoing_drives': ongoing_drives
         }
     
-    return render(request, 'admin_dash.html', companies)
+    return render(request, 'admin_dash.html', context)
 
 
 def approve_company(request):
