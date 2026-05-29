@@ -1,5 +1,31 @@
 {% extends 'base.html' %}
  
 {% block content %}
+
 <h1>Student's Dashboard</h1>
+
+<h2>Organizations</h2>
+{% for company in companies %}
+    <div>
+        {{ company.company_name }} 
+        <a 
+            href="{% url 'company_details' %}">
+            View details 
+        </a>
+    </div>
+{% endfor %}
+
+<h2>Applied drives</h2>
+{% for drive in applied_drives %}
+    <div>
+        {{ drive.drive.drive_name}}
+        {{ drive.drive.company.company_name }}
+        {{ drive.drive.application_deadline }}
+        <a 
+            href="{% url 'application_details' %}">
+            View details
+        </a>
+    </div>
+{% endfor %}
+
 {% endblock %}
