@@ -16,5 +16,7 @@ class Drive(models.Model):
     job_title = models.CharField(max_length=200, blank=True, null=True)
     job_description = models.TextField(blank=True, null=True)
     eligibility_criteria = models.TextField(blank=True, null=True)
+    location = models.TextField(blank=True, null=True)
+    salary = models.CharField(max_length=250, blank=True, null=True)
     application_deadline = models.DateField(blank=True, null=True)
     completed = models.BooleanField(blank=True, null=False, default=False)

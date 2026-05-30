@@ -10,7 +10,7 @@
 {% for drive in ongoing_drives %}
     Drive Name: {{ drive.drive_name }} 
     <a 
-        href="{% url 'drive_details %}">
+        href="{% url 'drive_details' company.id drive.id %}">
         View Details
     </a>
 {% endfor %}

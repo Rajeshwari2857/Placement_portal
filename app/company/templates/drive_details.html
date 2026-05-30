@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Drive {{ drive.drive_name }}</h1>
+<p>
+    <div>
+        Job title: {{ drive.job_title }}
+    </div>
+
+    <div>
+        Job description: {{ drive.job_description }}
+    </div>
+
+    <div>
+        Eligibility criteria: {{ drive.eligibility_criteria }}
+    </div>
+
+    <div>
+
+    <div>
+        Location: {{ drive.location }}
+    </div>
+
+    <div>
+        Salary: {{ drive.salary }}
+    </div>
+
+</p>
+{% endblock %}
