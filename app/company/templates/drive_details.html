@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Drive {{ drive.drive_name }}</h1>
+<h1>Drive: {{ drive.drive_name }}</h1>
 <p>
     <div>
         Job title: {{ drive.job_title }}
@@ -16,6 +16,8 @@
     </div>
 
     <div>
+        Application deadline: {{ drive.application_deadline }}
+    </div>
 
     <div>
         Location: {{ drive.location }}
@@ -25,5 +27,18 @@
         Salary: {{ drive.salary }}
     </div>
 
+    <form 
+        action="{% url 'apply_drive' company.id drive.id %}"
+        method="post">
+        {% csrf_token %}
+        <button
+            type="submit">
+            Apply now
+        </button>
+    </form>
+
+    <button>
+        <a href="{% url 'company_details' company.id %}">Back</a>
+    </button>
 </p>
 {% endblock %}
