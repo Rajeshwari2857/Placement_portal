@@ -56,3 +56,16 @@ def create_drive(request):
     
     else:
         return render(request, 'create_drive.html')
+    
+
+def company_details(request, company_id):
+    company = models.Company.objects.get(id=company_id)
+    ongoing_drives = models.Drive.objects.filter(company=company, completed=False)
+    completed_drives = models.Drive.objects.filter(company=company, completed=True)
+
+    context = {
+        'ongoing_drives': ongoing_drives,
+        'completed_drives': completed_drives,
+    }
+    
+    return render(request, 'company_details.html', context)

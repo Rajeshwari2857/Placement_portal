@@ -7,9 +7,9 @@
 <h2>Organizations</h2>
 {% for company in companies %}
     <div>
-        {{ company.company_name }} 
+        {{ company.company_name }}
         <a 
-            href="{% url 'company_details' %}">
+            href="{% url 'company_details' company.id %}">
             View details 
         </a>
     </div>
