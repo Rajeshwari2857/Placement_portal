@@ -7,5 +7,12 @@
     Overview 
 </p>
 
-{% for drive in drives %}
-    
+{% for drive in ongoing_drives %}
+    Drive Name: {{ drive.drive_name }} 
+    <a 
+        href="{% url 'drive_details %}">
+        View Details
+    </a>
+{% endfor %}
+
+{% endblock %}
