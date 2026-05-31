@@ -27,7 +27,7 @@ def stu_dash(request):
     available_drives = Drive.objects.filter(completed=False)
     companies = Company.objects.filter(approval_status='Approved')
     student = Student.objects.get(user=request.user)
-    applied_drives = Application.objects.filter(student=student, application_status='Applied')
+    applied_drives = Application.objects.filter(student=student)
 
     context = {
         'available_drives': available_drives,
@@ -35,3 +35,8 @@ def stu_dash(request):
         'applied_drives': applied_drives,
     }
     return render(request, 'stu_dash.html', context)
+
+
+def application_details(request, application_id):
+    application = Application.objects.get(id=application_id)
+    return render(request, 'application_details.html', {'application': application})

@@ -16,13 +16,11 @@
 {% endfor %}
 
 <h2>Applied drives</h2>
-{% for drive in applied_drives %}
+{% for application in applied_drives %}
     <div>
-        {{ drive.drive.drive_name}}
-        {{ drive.drive.company.company_name }}
-        {{ drive.drive.application_deadline }}
+        {{ application.drive.drive_name}}
         <a 
-            href="{% url 'application_details' %}">
+            href="{% url 'application_details' application.id %}">
             View details
         </a>
     </div>
