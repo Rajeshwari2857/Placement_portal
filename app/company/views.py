@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from datetime import date
 from django.contrib import messages
 from . import models
 from student.models import Student, Application
@@ -63,40 +62,4 @@ def create_drive(request):
     
     else:
         return render(request, 'create_drive.html')
-    
-
-def company_details(request, company_id):
-    company = models.Company.objects.get(id=company_id)
-    ongoing_drives = models.Drive.objects.filter(company=company, completed=False)
-    completed_drives = models.Drive.objects.filter(company=company, completed=True)
-
-    context = {
-        'company': company,
-        'ongoing_drives': ongoing_drives,
-        'completed_drives': completed_drives,
-    }
-    
-    return render(request, 'company_details.html', context)
-
-
-def drive_details(request, company_id, drive_id):
-    company = models.Company.objects.get(id=company_id)
-    drive = models.Drive.objects.get(id=drive_id)
-    return render(request, 'drive_details.html', {'drive': drive, 'company': company})
-
-
-def apply_drive(request, company_id, drive_id):
-
-    if request.method == 'POST':
-        student = Student.objects.get(user=request.user)
-        drive = models.Drive.objects.get(id=drive_id)
-        application = Application.objects.create(
-            student=student,
-            drive=drive,
-            application_date=date.today(),
-        )
-        messages.success(request,'Application successful!')
-        return redirect('drive_details' , company_id, drive_id)
-    else:
-        return redirect('drive_details' , company_id, drive_id)
     
