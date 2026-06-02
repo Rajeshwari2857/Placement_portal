@@ -79,3 +79,16 @@ def review_drive(request, drive_id):
     drive = models.Drive.objects.get(id=drive_id)
     applications = Application.objects.filter(drive=drive)
     return render(request, 'review_drive.html', {'applications': applications})
+
+
+def student_application(request, application_id):
+    application = Application.objects.get(id=application_id)
+    student = application.student
+    drive = application.drive
+
+    context = {
+        'application': application,
+        'student': student,
+        'drive': drive,
+    }
+    return render(request, 'student_application.html', context)

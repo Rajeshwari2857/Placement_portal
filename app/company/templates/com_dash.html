@@ -23,6 +23,7 @@
                 <form 
                     action="{% url 'complete_drive' %}"
                     method="post">
+                    {% csrf_token %}
                     <input 
                         type="hidden"
                         name="drive_id"
@@ -44,4 +45,5 @@
             </div>
         {% endfor %}
     </div>
+
 {% endblock %}

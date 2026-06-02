@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Student Application</h1>
+<p>
+    <div>
+        Student Name: {{ student.student_name }}
+    </div>
+    <div>
+        Department: {{ student.department }}
+    </div>
+    <div>
+        Graduation year: {{ student.graduation_year }}
+    </div>
+    <div>
+        Drive: {{ drive.drive_name }}
+    </div>
+    <div>
+        Job Title: {{ drive.job_title }}
+    </div>
+    <a href="{{ student.resume.url }}">
+        View Resume
+    </a>
+
+    <form 
+        action="{% url 'change_status' application.id %}"
+        method="post">
+        {% csrf_token %}
+        <select 
+            name="status">
+            <option 
+                value="Shortlist"
+                name="shortlist">
+                Shortlist
+            </option>
+            <option 
+                value="Accept"
+                name="accept">
+                Accept
+            </option>
+            <option 
+                value="Reject"
+                name="reject">
+                Reject
+            </option>
+        </select>
+        
+        <button>
+            Save
+        </button>
+        
+    </form>  
+</p>
+{% endblock %}
