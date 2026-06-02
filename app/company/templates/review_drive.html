@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Update Applications for the Drive</h1>
+
+    {% for application in applications %}
+        {{ application.student.student_name }}
+        {{ application.application_status }}
+        <a href="#">
+            Review application
+        </a>
+    {% endfor %}
+
+{% endblock %}

@@ -63,3 +63,19 @@ def create_drive(request):
     else:
         return render(request, 'create_drive.html')
     
+
+def complete_drive(request):
+    if request.method == 'POST':
+        drive_id = request.POST['drive_id']
+        drive = models.Drive.objects.get(id=drive_id)
+        drive.completed = True
+        drive.save()
+        return redirect('com_dash')
+    else:
+        return redirect('com_dash')
+    
+
+def review_drive(request, drive_id):
+    drive = models.Drive.objects.get(id=drive_id)
+    applications = Application.objects.filter(drive=drive)
+    return render(request, 'review_drive.html', {'applications': applications})

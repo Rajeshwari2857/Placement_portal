@@ -12,6 +12,26 @@
         {% for drive in ongoing_drives %}
             <div>
                 {{ drive.drive_name }}
+
+                <button>   
+                    <a 
+                        href="{% url 'review_drive' drive.id %}">
+                        View details
+                    </a>
+                </button>
+
+                <form 
+                    action="{% url 'complete_drive' %}"
+                    method="post">
+                    <input 
+                        type="hidden"
+                        name="drive_id"
+                        value="{{ drive.id }}">
+                    <button>
+                        Mark as completed
+                    </button>
+                    
+                </form>
             </div>
         {% endfor %}
     </div>
