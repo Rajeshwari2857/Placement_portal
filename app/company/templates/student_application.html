@@ -32,28 +32,31 @@
         <select 
             name="status">
             <option 
-                value="Shortlist"
-                {% if application.application_status == 'Shortlisted' %}
-                    selected
-                {% endif %}>
-                Shortlist 
+                value="Shortlist">
+                {% if application.application_status == 'Shortlisted' %} 
+                    Shortlist Selected 
+                {% else %}
+                    Shortlist
+                {% endif %} 
             </option>
             
 
             <option 
-                value="Accept"
-                {% if application.application_status == 'Accepted' %}
-                    selected
-                {% endif %}>
-                Accept 
+                value="Accept">
+                {% if application.application_status == 'Accepted' %} 
+                    Accept Selected 
+                {% else %}
+                    Accept
+                {% endif %} 
             </option>
 
             <option 
-                value="Reject"
-                {% if application.application_status == 'Rejected' %}
-                    selected
-                {% endif %}>
-                Reject 
+                value="Reject">
+                {% if application.application_status == 'Rejected' %} 
+                    Reject Selected 
+                {% else %}
+                    Reject
+                {% endif %} 
             </option>
         </select>
         
