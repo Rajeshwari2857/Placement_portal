@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>Student Application</h1>
-<p>
+
     <div>
         Student Name: {{ student.student_name }}
     </div>
@@ -18,37 +18,54 @@
     <div>
         Job Title: {{ drive.job_title }}
     </div>
-    <a href="{{ student.resume.url }}">
-        View Resume
-    </a>
+    {% if student.resume %}
+        <a href="{{ student.resume.url }}">
+            View Resume
+        </a>
+    {% endif %}
 
     <form 
-        action="{% url 'change_status' application.id %}"
+        action="{% url 'change_status' drive.id application.id %}"
         method="post">
         {% csrf_token %}
+
         <select 
             name="status">
             <option 
                 value="Shortlist"
-                name="shortlist">
-                Shortlist
+                {% if application.application_status == 'Shortlisted' %}
+                    selected
+                {% endif %}>
+                Shortlist 
             </option>
+            
+
             <option 
                 value="Accept"
-                name="accept">
-                Accept
+                {% if application.application_status == 'Accepted' %}
+                    selected
+                {% endif %}>
+                Accept 
             </option>
+
             <option 
                 value="Reject"
-                name="reject">
-                Reject
+                {% if application.application_status == 'Rejected' %}
+                    selected
+                {% endif %}>
+                Reject 
             </option>
         </select>
         
-        <button>
+        <button
+            type="submit">
             Save
         </button>
         
     </form>  
-</p>
+
+    <a href="{% url 'review_drive' drive.id %}">
+        Back 
+    </a>
+
 {% endblock %}

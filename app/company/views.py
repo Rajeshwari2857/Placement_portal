@@ -76,12 +76,17 @@ def complete_drive(request):
     
 
 def review_drive(request, drive_id):
-    drive = models.Drive.objects.get(id=drive_id)
+    drive = models.Drive.objects.get(id=drive_id, company__user=request.user)
     applications = Application.objects.filter(drive=drive)
-    return render(request, 'review_drive.html', {'applications': applications})
+
+    context = {
+        'applications': applications,
+        'drive': drive,
+    }
+    return render(request, 'review_drive.html', context)
 
 
-def student_application(request, application_id):
+def student_application(request, drive_id, application_id):
     application = Application.objects.get(id=application_id)
     student = application.student
     drive = application.drive
@@ -92,3 +97,46 @@ def student_application(request, application_id):
         'drive': drive,
     }
     return render(request, 'student_application.html', context)
+
+
+def change_status(request, drive_id, application_id):
+    
+    # if request.method == 'POST':
+    #     application = Application.objects.get(id=application_id)
+    #     status = request.POST['status']
+
+    #     if status == 'Shortlist':
+    #         application.application_status = 'Shortlisted'
+    #         application.save()
+    #         return redirect('student_application', application_id)
+
+    #     elif status == 'Accept':
+    #         application.application_status = 'Accepted'
+    #         application.save()
+    #         return redirect('student_application', application_id)
+        
+    #     elif status == 'Reject':
+    #         application.application_status = 'Rejected'
+    #         application.save()
+    #         return redirect('student_application', application_id)
+        
+    # else:
+    #     return redirect('student_application', application_id)
+
+    # this is ok, but an optimised solution would be:
+
+
+    if request.method == 'POST':
+        status =request.POST['status']
+        status_map = {
+            'Shortlist': 'Shortlisted',
+            'Accept': 'Accepted',
+            'Reject': 'Rejected',
+        }
+
+        application = Application.objects.get(id=application_id)
+        application.application_status = status_map[status]
+        application.save()
+        return redirect('student_application',drive_id, application_id)
+    else:
+        return redirect('student_application',drive_id, application_id) 
