@@ -62,7 +62,7 @@ def create_drive(request):
     
     else:
         return render(request, 'create_drive.html')
-    
+   
 
 def complete_drive(request):
     if request.method == 'POST':
@@ -73,7 +73,7 @@ def complete_drive(request):
         return redirect('com_dash')
     else:
         return redirect('com_dash')
-    
+
 
 def review_drive(request, drive_id):
     drive = models.Drive.objects.get(id=drive_id, company__user=request.user)
@@ -90,11 +90,13 @@ def student_application(request, drive_id, application_id):
     application = Application.objects.get(id=application_id)
     student = application.student
     drive = application.drive
+    is_company = True
 
     context = {
         'application': application,
         'student': student,
         'drive': drive,
+        'is_company': is_company,
     }
     return render(request, 'student_application.html', context)
 
@@ -140,3 +142,4 @@ def change_status(request, drive_id, application_id):
         return redirect('student_application',drive_id, application_id)
     else:
         return redirect('student_application',drive_id, application_id) 
+    

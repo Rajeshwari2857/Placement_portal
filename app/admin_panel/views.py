@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from company.models import Company, Drive
-from student.models import Student
+from student.models import Student, Application
+from company.views import student_application
+from student.views import drive_details
 
 
 def admin_dash(request):
@@ -9,15 +11,16 @@ def admin_dash(request):
     approved_companies = Company.objects.filter(approval_status='Approved')
     blacklisted_companies = Company.objects.filter(approval_status='Blacklisted')
     approved_students = Student.objects.filter(blacklisted=False)
-
     ongoing_drives = Drive.objects.filter(completed=False)
+    applications = Application.objects.filter()
 
     context = {
         'pending_companies': pending_companies, 
         'approved_companies': approved_companies,
         'blacklisted_companies': blacklisted_companies,
         'approved_students': approved_students,
-        'ongoing_drives': ongoing_drives
+        'ongoing_drives': ongoing_drives,
+        'applications': applications,
         }
     
     return render(request, 'admin_dash.html', context)
@@ -72,3 +75,6 @@ def complete_drive(request):
     
     else:
         return redirect('admin_dash')
+    
+
+

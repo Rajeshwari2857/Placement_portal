@@ -30,11 +30,11 @@
     {% endfor %}
 
 
-    <h2>Student applications</h2>
+    <h2>Registered Students</h2>
     
     {% for student in approved_students %}
         <div>
-            {{ student.name }}  
+            {{ student.student_name }}  
             <form 
                 action="{% url 'blacklist_student' %}"
                 method="post">    
@@ -85,6 +85,10 @@
         <div>
             {{ drive.drive_name }}  {{ drive.company.company_name }}  
 
+            <a href="{% url 'drive_details' drive.company.id drive.id %}">
+                View details 
+            </a>
+            
             <form
                 method="post"
                 action="{% url 'complete_drive' %}">
@@ -103,27 +107,18 @@
     {% endfor %}
 
 
-    <h2>Blacklisted Companies</h2>
+    <h2>Student Applications</h2>
 
-    {% for company in blacklisted_companies %}
+    {% for application in applications %}
         <div>
-            {{ company.company_name }}  
-            <form 
-                action="{% url 'approve_company' %}"
-                method="post">    
-                    {% csrf_token %}
-
-                    <input 
-                        type="hidden" 
-                        name="company_id" 
-                        value="{{ company.id }}">
-
-                    <button 
-                        type="submit">
-                        Approve
-                    </button>
-
-            </form>
+            {{ application.student.student_name }}  
+            {{ application.drive.drive_name }}  
+            {{ application.drive.company.company_name }}  
+            {{ application.application_date }}    
+            
+            <a href="{% url 'student_application' application.drive.id application.id %}">
+                View
+            </a>
         </div>
     {% endfor %}
 

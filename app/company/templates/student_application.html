@@ -24,48 +24,50 @@
         </a>
     {% endif %}
 
-    <form 
-        action="{% url 'change_status' drive.id application.id %}"
-        method="post">
-        {% csrf_token %}
+    {% if is_company %}
+        <form 
+            action="{% url 'change_status' drive.id application.id %}"
+            method="post">
+            {% csrf_token %}
 
-        <select 
-            name="status">
-            <option 
-                value="Shortlist">
-                {% if application.application_status == 'Shortlisted' %} 
-                    Shortlist Selected 
-                {% else %}
-                    Shortlist
-                {% endif %} 
-            </option>
+            <select 
+                name="status">
+                <option 
+                    value="Shortlist">
+                    {% if application.application_status == 'Shortlisted' %} 
+                        Shortlist Selected 
+                    {% else %}
+                        Shortlist
+                    {% endif %} 
+                </option>
+                
+
+                <option 
+                    value="Accept">
+                    {% if application.application_status == 'Accepted' %} 
+                        Accept Selected 
+                    {% else %}
+                        Accept
+                    {% endif %} 
+                </option>
+
+                <option 
+                    value="Reject">
+                    {% if application.application_status == 'Rejected' %} 
+                        Reject Selected 
+                    {% else %}
+                        Reject
+                    {% endif %} 
+                </option>
+            </select>
             
-
-            <option 
-                value="Accept">
-                {% if application.application_status == 'Accepted' %} 
-                    Accept Selected 
-                {% else %}
-                    Accept
-                {% endif %} 
-            </option>
-
-            <option 
-                value="Reject">
-                {% if application.application_status == 'Rejected' %} 
-                    Reject Selected 
-                {% else %}
-                    Reject
-                {% endif %} 
-            </option>
-        </select>
-        
-        <button
-            type="submit">
-            Save
-        </button>
-        
-    </form>  
+            <button
+                type="submit">
+                Save
+            </button>
+            
+        </form> 
+    {% endif %} 
 
     <a href="{% url 'review_drive' drive.id %}">
         Back 
