@@ -24,7 +24,7 @@
         </a>
     {% endif %}
 
-    {% if is_company %}
+    {% if request.user.is_authenticated and request.user.role == 'Company' %}
         <form 
             action="{% url 'change_status' drive.id application.id %}"
             method="post">

@@ -3,6 +3,10 @@ from django.contrib import messages
 from datetime import date
 from student.models import Student, Application
 from company.models import Company, Drive
+from django.contrib.auth.decorators import login_required
+
+@login_required
+
 
 def stu_profile(request):
 
@@ -21,7 +25,7 @@ def stu_profile(request):
         return redirect('stu_dash')
     
     else:
-        return render(request, 'stu_profile.html')
+        return render(request, 'student/stu_profile.html')
     
 
 def stu_dash(request):
@@ -36,7 +40,7 @@ def stu_dash(request):
         'companies': companies,
         'applied_drives': applied_drives,
     }
-    return render(request, 'stu_dash.html', context)
+    return render(request, 'student/stu_dash.html', context)
 
 
 def company_details(request, company_id):
@@ -50,13 +54,13 @@ def company_details(request, company_id):
         'completed_drives': completed_drives,
     }
     
-    return render(request, 'company_details.html', context)
+    return render(request, 'student/company_details.html', context)
 
 
 def drive_details(request, company_id, drive_id):
     company = Company.objects.get(id=company_id)
     drive = Drive.objects.get(id=drive_id)
-    return render(request, 'drive_details.html', {'drive': drive, 'company': company})
+    return render(request, 'student/drive_details.html', {'drive': drive, 'company': company})
 
 
 def apply_drive(request, company_id, drive_id):
@@ -82,4 +86,4 @@ def apply_drive(request, company_id, drive_id):
     
 def application_details(request, application_id):
     application = Application.objects.get(id=application_id)
-    return render(request, 'application_details.html', {'application': application})
+    return render(request, 'student/application_details.html', {'application': application})

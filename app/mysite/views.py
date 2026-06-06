@@ -4,9 +4,10 @@ from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from student.models import Student
 from company.models import Company
+from django.contrib.auth.decorators import login_not_required
 
 
-
+@login_not_required
 def log_in(request):
 
     if request.method == 'POST':
@@ -50,6 +51,7 @@ def log_in(request):
         return render(request, 'log_in.html')
 
 
+@login_not_required
 def signup(request):
 
     if request.method == 'POST':
@@ -74,11 +76,11 @@ def signup(request):
                 password=password)
             if role == 'Student':
                 Student.objects.create(user=user)
-                login(request, user)
-                return redirect('stu_profile')
+                messages.success('Account successfully created! Please log in to continue.')
+                return redirect('log_in')
             else:
                 Company.objects.create(user=user)
-                login(request, user)
-                return redirect('com_profile')
+                messages.success('Account successfully created! Please log in to continue.')
+                return redirect('log_in')
     else:
         return render(request, 'signup.html')       

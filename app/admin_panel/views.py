@@ -3,6 +3,9 @@ from company.models import Company, Drive
 from student.models import Student, Application
 from company.views import student_application
 from student.views import drive_details
+from django.contrib.auth.decorators import login_required
+
+@login_required
 
 
 def admin_dash(request):
@@ -23,7 +26,7 @@ def admin_dash(request):
         'applications': applications,
         }
     
-    return render(request, 'admin_dash.html', context)
+    return render(request, 'admin_panel/admin_dash.html', context)
 
 
 def approve_company(request):

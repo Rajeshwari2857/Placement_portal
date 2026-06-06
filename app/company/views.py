@@ -2,10 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from . import models
 from student.models import Student, Application
+from django.contrib.auth.decorators import login_required
+
+@login_required
 
 
 def com_pending(request):
-    return render(request, 'com_pending.html')
+    return render(request, 'company/com_pending.html')
 
 
 def com_profile(request):
@@ -23,7 +26,7 @@ def com_profile(request):
         return redirect('com_pending')
     
     else:
-        return render(request, 'com_profile.html')
+        return render(request, 'company/com_profile.html')
     
 
 def com_dash(request):
@@ -36,7 +39,7 @@ def com_dash(request):
         'completed_drives': completed_drives,
     }
 
-    return render(request, 'com_dash.html', drives)
+    return render(request, 'company/com_dash.html', drives)
 
 
 def create_drive(request):
@@ -61,7 +64,7 @@ def create_drive(request):
         return redirect('com_dash')
     
     else:
-        return render(request, 'create_drive.html')
+        return render(request, 'company/create_drive.html')
    
 
 def complete_drive(request):
@@ -77,13 +80,13 @@ def complete_drive(request):
 
 def review_drive(request, drive_id):
     drive = models.Drive.objects.get(id=drive_id, company__user=request.user)
-    applications = Application.objects.filter(drive=drive)
+    applications = Application.objects.filter(drive=drive, drive__user=request.user)
 
     context = {
         'applications': applications,
         'drive': drive,
     }
-    return render(request, 'review_drive.html', context)
+    return render(request, 'company/review_drive.html', context)
 
 
 def student_application(request, drive_id, application_id):
@@ -98,7 +101,7 @@ def student_application(request, drive_id, application_id):
         'drive': drive,
         'is_company': is_company,
     }
-    return render(request, 'student_application.html', context)
+    return render(request, 'company/student_application.html', context)
 
 
 def change_status(request, drive_id, application_id):

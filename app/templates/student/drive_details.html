@@ -27,15 +27,17 @@
         Salary: {{ drive.salary }}
     </div>
 
-    <form 
-        action="{% url 'apply_drive' company.id drive.id %}"
-        method="post">
-        {% csrf_token %}
-        <button
-            type="submit">
-            Apply now
-        </button>
-    </form>
+    {% if request.user.is_authenticated and request.user.role == 'Company' %}
+        <form 
+            action="{% url 'apply_drive' company.id drive.id %}"
+            method="post">
+            {% csrf_token %}
+            <button
+                type="submit">
+                Apply now
+            </button>
+        </form>
+    {% endif %}
 
     <button>
         <a href="{% url 'company_details' company.id %}">Back</a>
