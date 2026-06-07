@@ -60,7 +60,15 @@ def company_details(request, company_id):
 def drive_details(request, company_id, drive_id):
     company = Company.objects.get(id=company_id)
     drive = Drive.objects.get(id=drive_id)
-    return render(request, 'student/drive_details.html', {'drive': drive, 'company': company})
+    is_student = Student.objects.filter(user=request.user).exists()
+
+    context ={
+        'drive': drive, 
+        'company': company,
+        'is_student': is_student,
+    }
+        
+    return render(request, 'student/drive_details.html', context)
 
 
 def apply_drive(request, company_id, drive_id):

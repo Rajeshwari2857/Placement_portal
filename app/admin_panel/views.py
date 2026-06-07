@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect
 from company.models import Company, Drive
 from student.models import Student, Application
-from company.views import student_application
-from student.views import drive_details
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -16,6 +14,7 @@ def admin_dash(request):
     approved_students = Student.objects.filter(blacklisted=False)
     ongoing_drives = Drive.objects.filter(completed=False)
     applications = Application.objects.filter()
+    is_admin = True
 
     context = {
         'pending_companies': pending_companies, 
@@ -24,6 +23,7 @@ def admin_dash(request):
         'approved_students': approved_students,
         'ongoing_drives': ongoing_drives,
         'applications': applications,
+        'is_admin': is_admin,
         }
     
     return render(request, 'admin_panel/admin_dash.html', context)
@@ -80,4 +80,26 @@ def complete_drive(request):
         return redirect('admin_dash')
     
 
+def student_application(request, application_id):
+    application = Application.objects.get(id=application_id)
+    student = application.student
+    drive = application.drive
+    
+    context = {
+        'application': application,
+        'student': student,
+        'drive': drive,
+    }
+    return render(request, 'company/student_application.html', context)
 
+
+def drive_details(request, company_id, drive_id):
+    company = Company.objects.get(id=company_id)
+    drive = Drive.objects.get(id=drive_id)
+
+    context ={
+        'drive': drive, 
+        'company': company,
+    }
+        
+    return render(request, 'student/drive_details.html', context)

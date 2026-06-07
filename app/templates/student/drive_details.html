@@ -27,7 +27,7 @@
         Salary: {{ drive.salary }}
     </div>
 
-    {% if request.user.is_authenticated and request.user.role == 'Company' %}
+    {% if is_student %}
         <form 
             action="{% url 'apply_drive' company.id drive.id %}"
             method="post">
@@ -39,8 +39,14 @@
         </form>
     {% endif %}
 
-    <button>
-        <a href="{% url 'company_details' company.id %}">Back</a>
-    </button>
+    {% if is_student %}
+        <a href="{% url 'company_details' company.id %}">
+            Back
+        </a>
+    {% elif request.user.is_superuser %}
+        <a href="{% url 'admin_panel' %}">
+            Back
+        </a>
+    {% endif %}
 </p>
 {% endblock %}

@@ -6,7 +6,7 @@
     {% for application in applications %}
         {{ application.student.student_name }}
         {{ application.application_status }}
-        <a href="{% url 'student_application' drive.id application.id %}">
+        <a href="{% url 'student_application' application.id %}">
             Review application
         </a>
     {% endfor %}

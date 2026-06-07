@@ -24,7 +24,7 @@
         </a>
     {% endif %}
 
-    {% if request.user.is_authenticated and request.user.role == 'Company' %}
+    {% if is_company %}
         <form 
             action="{% url 'change_status' drive.id application.id %}"
             method="post">
@@ -69,8 +69,14 @@
         </form> 
     {% endif %} 
 
-    <a href="{% url 'review_drive' drive.id %}">
-        Back 
-    </a>
+    {% if is_company %}
+        <a href="{% url 'review_drive' drive.id %}">
+            Back 
+        </a>
+    {% elif request.user.is_superuser %}
+        <a href="{% url 'admin_panel' %}">
+            Back 
+        </a>
+    {% endif%}
 
 {% endblock %}

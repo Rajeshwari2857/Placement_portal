@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 def com_pending(request):
     return render(request, 'company/com_pending.html')
 
-@login_required
+
 def com_profile(request):
     if request.method == 'POST':
         company_name = request.POST['company_name']
@@ -78,7 +78,7 @@ def complete_drive(request):
 
 def review_drive(request, drive_id):
     drive = models.Drive.objects.get(id=drive_id, company__user=request.user)
-    applications = Application.objects.filter(drive=drive, drive__user=request.user)
+    applications = Application.objects.filter(drive=drive)
 
     context = {
         'applications': applications,
@@ -87,11 +87,11 @@ def review_drive(request, drive_id):
     return render(request, 'company/review_drive.html', context)
 
 
-def student_application(request, drive_id, application_id):
+def student_application(request, application_id):
     application = Application.objects.get(id=application_id)
     student = application.student
     drive = application.drive
-    is_company = True
+    is_company = models.Company.objects.filter(user=request.user).exists()
 
     context = {
         'application': application,
