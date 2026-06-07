@@ -4,15 +4,13 @@ from . import models
 from student.models import Student, Application
 from django.contrib.auth.decorators import login_required
 
-@login_required
 
 
 def com_pending(request):
     return render(request, 'company/com_pending.html')
 
-
+@login_required
 def com_profile(request):
-
     if request.method == 'POST':
         company_name = request.POST['company_name']
         hr_contact = request.POST['hr_contact']

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from student.models import Student
 from company.models import Company
@@ -84,3 +84,8 @@ def signup(request):
                 return redirect('log_in')
     else:
         return render(request, 'signup.html')       
+    
+
+def log_out(request):
+    logout(request)
+    return redirect('log_in')
