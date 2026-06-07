@@ -80,7 +80,7 @@ def complete_drive(request):
         return redirect('admin_dash')
     
 
-def student_application(request, application_id):
+def adm_student_application(request, application_id):
     application = Application.objects.get(id=application_id)
     student = application.student
     drive = application.drive
@@ -93,7 +93,7 @@ def student_application(request, application_id):
     return render(request, 'company/student_application.html', context)
 
 
-def drive_details(request, company_id, drive_id):
+def adm_drive_details(request, company_id, drive_id):
     company = Company.objects.get(id=company_id)
     drive = Drive.objects.get(id=drive_id)
 

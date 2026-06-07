@@ -57,7 +57,7 @@ def company_details(request, company_id):
     return render(request, 'student/company_details.html', context)
 
 
-def drive_details(request, company_id, drive_id):
+def stu_drive_details(request, company_id, drive_id):
     company = Company.objects.get(id=company_id)
     drive = Drive.objects.get(id=drive_id)
     is_student = Student.objects.filter(user=request.user).exists()
@@ -68,6 +68,7 @@ def drive_details(request, company_id, drive_id):
         'is_student': is_student,
     }
         
+    print(messages.get_messages(request))
     return render(request, 'student/drive_details.html', context)
 
 
@@ -79,7 +80,7 @@ def apply_drive(request, company_id, drive_id):
         
         if Application.objects.filter(student=student, drive=drive).exists():
             messages.error(request,'You have already applied to this drive.')
-            return redirect('drive_details', company_id, drive_id)
+            return redirect('stu_drive_details', company_id, drive_id)
         
         else: 
             application = Application.objects.create(
@@ -88,9 +89,9 @@ def apply_drive(request, company_id, drive_id):
                 application_date=date.today(),
             )
             messages.success(request,'Application successful!')
-            return redirect('drive_details' , company_id, drive_id)
+            return redirect('stu_drive_details' , company_id, drive_id)
     else:
-        return redirect('drive_details' , company_id, drive_id)
+        return redirect('stu_drive_details' , company_id, drive_id)
     
 def application_details(request, application_id):
     application = Application.objects.get(id=application_id)

@@ -87,7 +87,7 @@ def review_drive(request, drive_id):
     return render(request, 'company/review_drive.html', context)
 
 
-def student_application(request, application_id):
+def student_application(request, drive_id, application_id):
     application = Application.objects.get(id=application_id)
     student = application.student
     drive = application.drive

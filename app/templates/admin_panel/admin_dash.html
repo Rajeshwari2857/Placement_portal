@@ -85,7 +85,7 @@
         <div>
             {{ drive.drive_name }}  {{ drive.company.company_name }}  
 
-            <a href="{% url 'drive_details' drive.company.id drive.id %}">
+            <a href="{% url 'adm_drive_details' drive.company.id drive.id %}">
                 View details 
             </a>
             
@@ -116,7 +116,7 @@
             {{ application.drive.company.company_name }}  
             {{ application.application_date }}    
             
-            <a href="{% url 'student_application' application.id %}">
+            <a href="{% url 'adm_student_application' application.id %}">
                 View
             </a>
         </div>

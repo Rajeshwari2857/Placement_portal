@@ -8,6 +8,6 @@ urlpatterns = [
     path('blacklisted/', views.blacklist_company, name='blacklist_company'),
     path('blacklist/', views.blacklist_student, name='blacklist_student'),
     path('complete_drive/', views.complete_drive, name='complete_drive'),
-    path('dashboard/student_application/<int:application_id>/', views.student_application, name='student_application'),
-    path('dashboard/drive_details/<int:company_id>/<int:drive_id>/', views.drive_details, name='drive_details'),
+    path('dashboard/student_application/<int:application_id>/', views.adm_student_application, name='adm_student_application'),
+    path('dashboard/drive_details/<int:company_id>/<int:drive_id>/', views.adm_drive_details, name='adm_drive_details'),
 ]

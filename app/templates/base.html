@@ -22,14 +22,13 @@
 
 
 <body 
-
+    bgcolor="white"> 
+    
     {% for message in messages %}
         {{ message }}
     {% endfor %}
 
-    bgcolor="white"> 
-        {% block content %}
-
-        {% endblock %}
+    {% block content %}
+    {% endblock %}
 </body>
 </html>
