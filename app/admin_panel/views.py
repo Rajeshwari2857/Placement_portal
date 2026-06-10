@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from company.models import Company, Drive
 from student.models import Student, Application
+from itertools import chain
 
 
 def admin_dash(request):
@@ -12,10 +13,23 @@ def admin_dash(request):
     ongoing_drives = Drive.objects.filter(completed=False)
     applications = Application.objects.filter()
 
-    # for search bar
+    # search bar
     query = request.GET.get('search', '')
     filter_type = request.GET.get('filter', 'all')
+    final_result = []
 
+    if filter_type == 'students':
+        final_result = Student.objects.filter(student_name__icontains=query)
+
+    if filter_type == 'companies':
+        final_result = Company.objects.filter(company_name__icontains=query)
+
+    if filter_type == 'all':
+        students = Student.objects.filter(student_name__icontains=query)
+        companies = Company.objects.filter(Company_name__icontains=query)
+        final_result = list(chain(students, companies))
+        
+        
     context = {
         'pending_companies': pending_companies, 
         'approved_companies': approved_companies,
@@ -23,6 +37,7 @@ def admin_dash(request):
         'approved_students': approved_students,
         'ongoing_drives': ongoing_drives,
         'applications': applications,
+        'final_result': final_result,
         }
     
     return render(request, 'admin_panel/admin_dash.html', context)
