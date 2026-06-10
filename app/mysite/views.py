@@ -76,11 +76,11 @@ def signup(request):
                 password=password)
             if role == 'Student':
                 Student.objects.create(user=user)
-                messages.success('Account successfully created! Please log in to continue.')
+                messages.success(request, 'Account successfully created! Please log in to continue.')
                 return redirect('log_in')
             else:
                 Company.objects.create(user=user)
-                messages.success('Account successfully created! Please log in to continue.')
+                messages.success(request, 'Account successfully created! Please log in to continue.')
                 return redirect('log_in')
     else:
         return render(request, 'signup.html')       

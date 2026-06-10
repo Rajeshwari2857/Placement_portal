@@ -3,9 +3,6 @@ from django.contrib import messages
 from datetime import date
 from student.models import Student, Application
 from company.models import Company, Drive
-from django.contrib.auth.decorators import login_required
-
-@login_required
 
 
 def stu_profile(request):

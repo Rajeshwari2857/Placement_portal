@@ -2,8 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from . import models
 from student.models import Student, Application
-from django.contrib.auth.decorators import login_required
-
 
 
 def com_pending(request):
@@ -35,6 +33,7 @@ def com_dash(request):
     drives = {
         'ongoing_drives': ongoing_drives,
         'completed_drives': completed_drives,
+        'company': company,
     }
 
     return render(request, 'company/com_dash.html', drives)

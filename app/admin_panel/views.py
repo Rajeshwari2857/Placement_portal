@@ -1,9 +1,6 @@
 from django.shortcuts import render, redirect
 from company.models import Company, Drive
 from student.models import Student, Application
-from django.contrib.auth.decorators import login_required
-
-@login_required
 
 
 def admin_dash(request):
@@ -14,7 +11,10 @@ def admin_dash(request):
     approved_students = Student.objects.filter(blacklisted=False)
     ongoing_drives = Drive.objects.filter(completed=False)
     applications = Application.objects.filter()
-    is_admin = True
+
+    # for search bar
+    query = request.GET.get('search', '')
+    filter_type = request.GET.get('filter', 'all')
 
     context = {
         'pending_companies': pending_companies, 
@@ -23,7 +23,6 @@ def admin_dash(request):
         'approved_students': approved_students,
         'ongoing_drives': ongoing_drives,
         'applications': applications,
-        'is_admin': is_admin,
         }
     
     return render(request, 'admin_panel/admin_dash.html', context)
