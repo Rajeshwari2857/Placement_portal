@@ -35,6 +35,7 @@ def stu_dash(request):
     context = {
         'available_drives': available_drives,
         'companies': companies,
+        'student': student,
         'applied_drives': applied_drives,
     }
     return render(request, 'student/stu_dash.html', context)
@@ -93,3 +94,14 @@ def apply_drive(request, company_id, drive_id):
 def application_details(request, application_id):
     application = Application.objects.get(id=application_id)
     return render(request, 'student/application_details.html', {'application': application})
+
+
+def application_history(request, student_id):
+    student = Student.objects.get(id=student_id)
+    applications = Application.objects.filter(student=student)
+
+    context = {
+        'student': student, 
+        'applications': applications, 
+    }
+    return render(request, 'student/application_history.html', context)

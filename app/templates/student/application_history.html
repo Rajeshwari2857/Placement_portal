@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Student Application History</h1>
+
+<a href="{% url 'stu_dash' %}">
+    Back
+</a>
+
+<div>
+    Student Name: {{ student.student_name }}
+    <br>
+    Department: {{ student.department }}
+</div>
+
+{% for application in applications %}
+    {{ application.drive.company.company_name }}
+    {{ application.drive.drive_name }}
+    {{ application.drive.job_title }}
+    {{ application.application_status }}
+{% endfor %}
+
+{% endblock %}
