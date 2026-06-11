@@ -18,6 +18,12 @@
     <div>
         Job Title: {{ drive.job_title }}
     </div>
+    <div>
+        {% if request.user.is_superuser %}
+            Application satus: {{ application.application_status }}
+        {% endif %}
+    </div>
+
     {% if student.resume %}
         <a href="{{ student.resume.url }}">
             View Resume

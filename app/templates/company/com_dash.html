@@ -18,22 +18,20 @@
 
     <h1>Company's dashboard</h1>
 
-    <button>
-        <a href="{% url 'create_drive' %}">Create drive</a>
-    </button>
+    <a href="{% url 'create_drive' %}">
+        Create drive
+    </a>
 
     <div>
         <h2>Upcoming Drives</h2>
         {% for drive in ongoing_drives %}
             <div>
                 {{ drive.drive_name }}
-
-                <button>   
-                    <a 
-                        href="{% url 'review_drive' drive.id %}">
-                        View details
-                    </a>
-                </button>
+                   
+                <a 
+                    href="{% url 'review_drive' drive.id %}">
+                    View details
+                </a>
 
                 <form 
                     action="{% url 'complete_drive' %}"

@@ -2,30 +2,26 @@
 
 {% block content %}
 <h1>Application details</h1>
-    <p>
-        <div>
-            Drive name: {{ application.drive.drive_name }}
-        </div>
-        <div>
-            Job Title: {{ application.drive.job_title }}
-        </div>
-        <div>
-            Job description: {{ application.drive.job_description }}
-        </div>
-        <div>
-            Application date: {{ application.application_date }}
-        </div>
-        <div>
-            Application status: {{ application.application_status }}
-        </div>
-    </p>
+    <div>
+        Drive name: {{ application.drive.drive_name }}
+    </div>
+    <div>
+        Job Title: {{ application.drive.job_title }}
+    </div>
+    <div>
+        Job description: {{ application.drive.job_description }}
+    </div>
+    <div>
+        Application date: {{ application.application_date }}
+    </div>
+    <div>
+        Application status: {{ application.application_status }}
+    </div>
 
     <div>
-        <button>
-            <a 
-                href="{% url 'stu_dash' %}">
-                Back
-            </a>
-        </button>
+        <a 
+            href="{% url 'stu_dash' %}">
+            Back
+        </a>
     </div>
 {% endblock %}
