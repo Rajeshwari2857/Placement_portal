@@ -26,7 +26,7 @@ def admin_dash(request):
 
     if filter_type == 'all':
         students = Student.objects.filter(student_name__icontains=query)
-        companies = Company.objects.filter(Company_name__icontains=query)
+        companies = Company.objects.filter(company_name__icontains=query)
         final_result = list(chain(students, companies))
         
         
