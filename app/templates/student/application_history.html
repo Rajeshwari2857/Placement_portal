@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Student Application History</h1>
 
-<a href="{% url 'stu_dash' %}">
-    Back
-</a>
+<hr class="line">
+    <div class="header-row">
+        <h1>Student Application History</h1>
+        <a href="{% url 'stu_dash' %}">
+            Back
+        </a>
+    </div>
+<hr class="line">
 
 <div>
     Student Name: {{ student.student_name }}
@@ -13,11 +17,26 @@
     Department: {{ student.department }}
 </div>
 
-{% for application in applications %}
-    {{ application.drive.company.company_name }}
-    {{ application.drive.drive_name }}
-    {{ application.drive.job_title }}
-    {{ application.application_status }}
-{% endfor %}
+<table class="table">
+    <thead>
+        <tr class="tr">
+            <th class="th">Company Name</th>
+            <th class="th">Drive Name</th>
+            <th class="th">Job Title</th>
+            <th class="th">Application status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for application in applications %}
+            <tr class="tr">
+                <td class="td">{{ application.drive.company.company_name }}</td>
+                <td class="td">{{ application.drive.drive_name }}</td>
+                <td class="td">{{ application.drive.job_title }}</td>
+                <td class="td">{{ application.application_status }}</td>
+            </tr>
+    </tbody>
+    {% endfor %}
+</table>
+
 
 {% endblock %}
