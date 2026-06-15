@@ -4,7 +4,7 @@
     margin: 20px 0;
 }
 
-.table, .th, .td, .tr {
+table, th, td, tr {
     border: 1px solid black;
     border-collapse: collapse;
     border-right: 1px solid black;
@@ -12,6 +12,12 @@
 
 .header-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    gap: 45vw
+
+}
+
+.blue-button {
+    color:red;
 }

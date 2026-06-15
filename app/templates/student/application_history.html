@@ -5,7 +5,8 @@
 <hr class="line">
     <div class="header-row">
         <h1>Student Application History</h1>
-        <a href="{% url 'stu_dash' %}">
+        <a class="blue-button"
+            href="{% url 'stu_dash' %}">
             Back
         </a>
     </div>
@@ -19,20 +20,20 @@
 
 <table class="table">
     <thead>
-        <tr class="tr">
-            <th class="th">Company Name</th>
-            <th class="th">Drive Name</th>
-            <th class="th">Job Title</th>
-            <th class="th">Application status</th>
+        <tr>
+            <th>Company Name</th>
+            <th>Drive Name</th>
+            <th>Job Title</th>
+            <th>Application status</th>
         </tr>
     </thead>
     <tbody>
         {% for application in applications %}
-            <tr class="tr">
-                <td class="td">{{ application.drive.company.company_name }}</td>
-                <td class="td">{{ application.drive.drive_name }}</td>
-                <td class="td">{{ application.drive.job_title }}</td>
-                <td class="td">{{ application.application_status }}</td>
+            <tr>
+                <td>{{ application.drive.company.company_name }}</td>
+                <td>{{ application.drive.drive_name }}</td>
+                <td>{{ application.drive.job_title }}</td>
+                <td>{{ application.application_status }}</td>
             </tr>
     </tbody>
     {% endfor %}
