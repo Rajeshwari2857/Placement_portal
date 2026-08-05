@@ -25,8 +25,9 @@
         </option>
     </select>
 
-    <button type="submit">
-        Submit
+    <button class="blue-button"
+        type="submit">
+        search
     </button>
 
 </form>
@@ -57,7 +58,7 @@
                         name="company_id" 
                         value="{{ company.id }}">
 
-                    <button 
+                    <button class="red-button"
                         type="submit">
                         Blacklist 
                     </button>
@@ -82,7 +83,7 @@
                         name="student_id" 
                         value="{{ student.id }}">
 
-                    <button 
+                    <button class="red-button"
                         type="submit">
                         Blacklist
                     </button>
@@ -106,7 +107,7 @@
                         name="company_id" 
                         value="{{ company.id }}">
 
-                    <button 
+                    <button class="green-button"
                         type="submit">
                         Approve
                     </button>
@@ -122,7 +123,8 @@
         <div>
             {{ drive.drive_name }}  {{ drive.company.company_name }}  
 
-            <a href="{% url 'adm_drive_details' drive.company.id drive.id %}">
+            <a class="blue-button"
+                href="{% url 'adm_drive_details' drive.company.id drive.id %}">
                 View details 
             </a>
             
@@ -136,7 +138,7 @@
                         name="drive_id"
                         value="{{ drive.id }}">
 
-                    <button 
+                    <button class="green-button"
                         type="submit">
                         Mark as completed
                     </button>
@@ -155,7 +157,8 @@
             {{ application.drive.company.company_name }}  
             {{ application.application_date }}    
             
-            <a href="{% url 'adm_student_application' application.id %}">
+            <a class="blue-button"
+                href="{% url 'adm_student_application' application.id %}">
                 View
             </a>
         </div>

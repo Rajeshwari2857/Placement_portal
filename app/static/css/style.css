@@ -1,0 +1,64 @@
+.line {
+    background-color: black;
+    height: 1px;
+    margin: 20px 0;
+}
+
+table, th, td, tr {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-right: 1px solid black;
+}
+
+.header-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 45vw
+
+}
+
+.red-button {
+    border-radius: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    background-color: rgb(255, 195, 195);
+    border: 2px solid red;
+    color: red;
+}
+
+.red-button:is( :hover, :focus) {
+    background-color: white;
+}
+
+.blue-button {
+    border-radius: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    background-color: rgb(193, 225, 239);
+    border: 2px solid rgb(37, 62, 192);
+    color: rgb(37, 62, 192);
+}
+
+.blue-button:is( :hover, :focus) {
+    background-color: white;
+}
+
+.green-button {
+    border-radius: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    background-color: rgb(218, 247, 218);
+    border: 2px solid rgb(47, 124, 45);
+    color: rgb(47,124,45);
+}
+
+.green-button:is( :hover, :focus) {
+    background-color: white;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    
+}
