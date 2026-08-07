@@ -32,7 +32,7 @@
             action="{% url 'apply_drive' company.id drive.id %}"
             method="post">
             {% csrf_token %}
-            <button
+            <button class="green-button"
                 type="submit">
                 Apply now
             </button>
@@ -40,11 +40,13 @@
     {% endif %}
 
     {% if is_student %}
-        <a href="{% url 'company_details' company.id %}">
+        <a class="blue-button"
+            href="{% url 'company_details' company.id %}">
             Back
         </a>
     {% elif request.user.is_superuser %}
-        <a href="{% url 'admin_panel' %}">
+        <a class="blue-button"
+            href="{% url 'admin_panel' %}">
             Back
         </a>
     {% endif %}

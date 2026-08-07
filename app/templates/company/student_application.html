@@ -25,7 +25,8 @@
     </div>
 
     {% if student.resume %}
-        <a href="{{ student.resume.url }}">
+        <a class="blue-button"
+            href="{{ student.resume.url }}">
             View Resume
         </a>
     {% endif %}
@@ -67,7 +68,7 @@
                 </option>
             </select>
             
-            <button
+            <button class="blue-button"
                 type="submit">
                 Save
             </button>
@@ -76,11 +77,13 @@
     {% endif %} 
 
     {% if is_company %}
-        <a href="{% url 'review_drive' drive.id %}">
+        <a class="blue-button"
+            href="{% url 'review_drive' drive.id %}">
             Back 
         </a>
     {% elif request.user.is_superuser %}
-        <a href="{% url 'admin_panel' %}">
+        <a class="blue-button"
+            href="{% url 'admin_panel' %}">
             Back 
         </a>
     {% endif%}

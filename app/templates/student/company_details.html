@@ -9,13 +9,14 @@
 
 {% for drive in ongoing_drives %}
     Drive Name: {{ drive.drive_name }} 
-    <a 
+    <a class="blue-button"
         href="{% url 'stu_drive_details' company.id drive.id %}">
         View Details
     </a>
 {% endfor %}
 
-<a href="{% url 'stu_dash' %}">
+<a class="blue-button"
+    href="{% url 'stu_dash' %}">
     Back
 </a>
 
