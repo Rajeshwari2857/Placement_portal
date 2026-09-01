@@ -12,32 +12,33 @@
     </div>
 <hr class="line">
 
-<div>
+<div class="content">
     Student Name: {{ student.student_name }}
     <br>
     Department: {{ student.department }}
-</div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Company Name</th>
-            <th>Drive Name</th>
-            <th>Job Title</th>
-            <th>Application status</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for application in applications %}
+    <table class="table">
+        <thead>
             <tr>
-                <td>{{ application.drive.company.company_name }}</td>
-                <td>{{ application.drive.drive_name }}</td>
-                <td>{{ application.drive.job_title }}</td>
-                <td>{{ application.application_status }}</td>
+                <th>Company Name</th>
+                <th>Drive Name</th>
+                <th>Job Title</th>
+                <th>Application status</th>
             </tr>
-    </tbody>
-    {% endfor %}
-</table>
+        </thead>
 
+        <tbody>
+            {% for application in applications %}
+                <tr>
+                    <td>{{ application.drive.company.company_name }}</td>
+                    <td>{{ application.drive.drive_name }}</td>
+                    <td>{{ application.drive.job_title }}</td>
+                    <td>{{ application.application_status }}</td>
+                </tr>
+        </tbody>
+
+        {% endfor %}
+    </table>
+</div>
 
 {% endblock %}

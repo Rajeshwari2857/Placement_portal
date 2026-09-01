@@ -1,21 +1,85 @@
-.line {
-    background-color: black;
-    height: 1px;
-    margin: 20px 0;
+/* CSS DEFAULT RESET */
+
+/* An intuitive box-sizing model. This will ensure the inner box doesnt grow bigger than the outer box, giving weird look. * applies it everywhere. */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
-table, th, td, tr {
-    border: 1px solid black;
-    border-collapse: collapse;
-    border-right: 1px solid black;
+/* Remove default margin. For example, the space between <p> will be set to 0. */
+*:not(dialog) {
+    margin: 0;
 }
 
-.header-row {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 45vw
+/* Enable keyword animations. This will automatically set the required size and animation when we need to select an option from a dropdown */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        interpolate-size: allow-keywords;
+  }
+}
 
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+    /* Increase line-height */
+    line-height: 1.5;
+
+    /* line-height of 1.5 may look good for paragraphs but it adds too much spacing for a heading, so another way to do it is 
+        line-height: calc(1em + 0.5rem); 
+    Instead of calculating the line height by multiplying the font-size with a number like 1.5, this alternative uses the font-size as a base, and adds a fixed amount of space to each line. */
+
+    /* Improves text rendering, makes the text easier to read*/
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Improve media defaults */
+img, picture, video, canvas, svg {
+
+    display: block;
+
+    /* This is done to prevent the media from overflowing incase the container isnt big enough to fit in. */
+    max-width: 100%;
+}
+
+/* Inherit fonts for form controls. Inputs, textarea and buttons dont do it by default. */
+input, button, textarea, select {
+    font: inherit;
+}
+
+/* Avoid text overflows. breaks a really long word or url if it doesnt fit, instead of adding a horizontal scrollbar. */
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+
+p {
+/* Makes sure that the final line of text has atleast two words so it doesnt look bad */
+    text-wrap: pretty;
+}
+/* The algorithm tries to make each line of text roughly the same length. */
+h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+}
+
+
+/* CUSTOM STYLING */
+body {
+    display: block;
+    place-content: center;
+}
+
+/* login page container */
+.container {
+    text-align: center;
+    background-color: yellow;
+    padding: 5rem;
+    border: 2rem;
+    border-color: black;
 }
 
 .red-button {
@@ -60,5 +124,5 @@ table, th, td, tr {
 a {
     text-decoration: none;
     display: inline-block;
-    
 }
+
